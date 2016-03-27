@@ -1,0 +1,11 @@
+[package]
+name = "xcbtests"
+version = "0.1.0"
+authors = ["Adam <sector-f on github>"]
+
+[dependencies]
+xcb = "*"
+
+[[bin]]
+name = "screensize"
+path = "src/screensize.rs"
