@@ -1,4 +1,4 @@
-// Output screen size in WIDTHxHEIGHT format
+// Output screen sizes in WIDTHxHEIGHT format
 
 extern crate xcb;
 use xcb::base;
@@ -9,12 +9,11 @@ fn main() {
 
     let setup: xproto::Setup = connection.get_setup();
 
-    // let roots_len = unsafe { (*setup.ptr).roots_len };
     let screen_iterator = setup.roots();
 
-    let data = screen_iterator.data;
-    let width = unsafe { ((*data).width_in_pixels) };
-    let height = unsafe { ((*data).height_in_pixels) };
-
-    println!("{}x{}", width, height);
+    for screen in screen_iterator {
+        let width = screen.width_in_pixels();
+        let height = screen.height_in_pixels();
+        println!("{}x{}", width, height);
+    }
 }
