@@ -5,7 +5,16 @@ authors = ["Adam <sector-f on github>"]
 
 [dependencies]
 xcb = "*"
+libc = "*"
 
 [[bin]]
 name = "screensize"
 path = "src/screensize.rs"
+
+[[bin]]
+name = "info"
+path = "src/info.rs"
+
+[[bin]]
+name = "basicwindow"
+path = "src/basicwindow.rs"

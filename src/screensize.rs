@@ -1,13 +1,19 @@
 // Output screen sizes in WIDTHxHEIGHT format
 
 extern crate xcb;
-use xcb::base;
-use xcb::xproto;
+use std::process;
 
 fn main() {
-    let (connection, screen_num) = base::Connection::connect();
+    let connection =
+        match xcb::Connection::connect(None) {
+            Ok((conn, _)) => conn,
+            Err(_) => {
+                println!("Could not connect to X server");
+                process::exit(1);
+            },
+        };
 
-    let setup: xproto::Setup = connection.get_setup();
+    let setup = connection.get_setup();
 
     let screen_iterator = setup.roots();
 
